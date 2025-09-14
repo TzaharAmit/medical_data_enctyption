@@ -21,5 +21,40 @@ This project demonstrates how adversarial perturbations can **encrypt images inv
 - For unauthorized users → encrypted images look unchanged but mislead AI systems.  
 - For authorized users → reconstruction models recover the original image and labels, maintaining clinical usability.  
 
-## 🛠️ Project Structure
+## Project Structure
+The project is organized into three main components:
+
+classification/ – Contains scripts for preparing the NIH Chest X-ray dataset and training a baseline classifier. This baseline serves both as a benchmark for normal performance and as the target model for adversarial attacks.
+
+encryption/ – Implements adversarial attack methods used for encryption. These include FGSM (white-box) as well as HopSkipJump and Square Attack (black-box). Each script generates adversarially perturbed images that conceal diagnostic labels while maintaining visual fidelity.
+
+reconstruction/ – Contains different reconstruction strategies designed to reverse adversarial encryption. This includes VAE-based models (with and without KL divergence), a denoiser for image reconstruction, a classifier for label recovery, and a joint model that combines both image and label reconstruction into a single network.
+
+Together, these modules form the full pipeline: preprocessing and classification → adversarial encryption → reconstruction and evaluation.
+
+
+---
+
+## Environment Setup
+```bash
+# Clone repository
+git clone https://github.com/yourusername/adversarial-medical-encryption.git
+cd adversarial-medical-encryption
+
+# Create environment
+conda create -n adv-encrypt python=3.9 -y
+conda activate adv-encrypt
+
+# Install dependencies
+torch
+torchvision
+scikit-learn
+numpy
+pandas
+opencv-python
+matplotlib
+seaborn
+tqdm
+
+
 
